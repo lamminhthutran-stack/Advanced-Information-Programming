@@ -22,4 +22,3 @@ while True:
     
     else:
         print("알 수 없는 명령어입니다.")
-        print("사용 가능한 명령어: 상태, 종료")
