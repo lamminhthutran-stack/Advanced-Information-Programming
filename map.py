@@ -28,11 +28,11 @@ def player_move(player, direction, campus_map):
     
     if new_row < 0 or new_row >= len(campus_map) or new_col < 0 or new_col >= len(campus_map[0]):
         print("그 방향은 막혔어.")
-        return
+        return "blocked"
     
     if campus_map[new_row][new_col] is None:
         print("그 방향은 막혔어.")
-        return
+        return "blocked"
     
     player.row = new_row
     player.col = new_col
