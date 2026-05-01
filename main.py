@@ -4,6 +4,7 @@ from data_loader import load_events
 from quest import Quest
 from place import get_place
 from utils import use_item
+from utils import use_item, save_game, load_game
 
 player = Player()
 events_data = load_events('events.pkl')
