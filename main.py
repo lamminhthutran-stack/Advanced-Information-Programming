@@ -1,5 +1,6 @@
 from player import Player
 from map import campus_map, get_current_location, player_move, get_neighbors
+from data_loader import load_events
 
 player = Player()
 
@@ -19,6 +20,9 @@ while True:
     elif cmd == "종료":
         print("게임을 종료합니다.")
         break
+    
+    elif cmd == "임무목록":
+        show_quests(player)
     
     else:
         print("알 수 없는 명령어입니다.")
