@@ -2,11 +2,11 @@
 campus_map = [
     [None, None, None, None, "새천년관", "이윤재관"],
     ["백양관", "백양로5", "대강당", "음악관", "알렌관", "ABMRC"],
-    ["중앙도서관", "독수리상", "학생회관", "루스채플", "재활병원", "치관대학"],
+    ["중앙도서관", "독수리상", "학생회관", "루스채플", "재활병원", "치과대학"],  
     ["체육관", "백양로3", "공터2", "광혜원", "어린이병원", "세브란스병원"],
-    ["공학관", "백양로2", "백주년기겸관", "안과병원", "제중관", None],
-    ["공학원", "백양로1", "공토1", "암병원", "의과대학", None],
-    ["연대앞 버스정류장", "정문", "스타벅스", "세브란스병원 버스정류장", None, None]   
+    ["공학관", "백양로2", "백주년기념관", "안과병원", "제중관", None],
+    ["공학원", "백양로1", "공터1", "암병원", "의과대학", None],               
+    ["연대앞 버스정류장", "정문", "스타벅스", "세브란스병원 버스정류장", None, None]
 ]
 
 def get_current_location(player, campus_map):
@@ -38,6 +38,7 @@ def player_move(player, direction, campus_map):
     player.col = new_col
     player.location = campus_map[new_row][new_col]
     print(f"{player.location}으로 이동했어.")
+    return "moved"
 
 def get_place_name(row, col, campus_map):
     if row < 0 or row >= len(campus_map) or col < 0 or col >= len(campus_map[0]):

@@ -1,8 +1,8 @@
 from player import Player
 from map import campus_map, get_current_location, player_move, get_neighbors
 from data_loader import load_events
-from quest import Quest
-from place import get_place
+from quest import Quest, interact, show_quests, on_arrive
+from place import get_place, interact_buy, interact_sell
 from utils import use_item
 from utils import use_item, save_game, load_game
 
@@ -10,7 +10,7 @@ player = Player()
 events_data = load_events('events.pkl')
 event_info = events_data["events"]
 event_answers = events_data["answers"]
-
+ 
 input_log = []
 
 print("송도 생활을 마치고 신촌에 처음 도착했다. 연대앞 버스정류장이다.")
@@ -34,18 +34,17 @@ while True:
     
     elif cmd in ["동", "서", "남", "북"]:
         result = player_move(player, cmd, campus_map)
-        if result != "blocked":
+        if result == "moved":
             if player.difficulty == "보통":
                 player.HP -= 1
             if player.difficulty == "어려움":
                 player.HP -= 2
             elif player.difficulty == "쉬움":
                 player.HP -= 0.5
-                
             if player.location in event_info:
                 print(f"[사건]: {event_info[player.location]}") 
                 
-            Quest.on_arrive(player, event_answers)
+            on_arrive(player, event_answers)
             
     elif cmd == "가방":
         if not player.inventory:
@@ -58,24 +57,24 @@ while True:
             use_item(player, choice)
     
     elif cmd == "상호작용":
-        Quest.interact(player, event_answers)
+        interact(player, event_answers)
         
     elif cmd == "구매":
         place = get_place(player.location)
         if place.buy_items:
-            place.interact_buy(player)
+            interact_buy(place, player)
         else:
             print("이 장소에서는 구매할 수 없습니다.")
             
     elif cmd == "판매":
         place = get_place(player.location)
         if place.sell_items:
-            place.interact_sell(player)
+            interact_sell(place, player)
         else:
             print("이 장소에서는 판매할 수 없습니다.")
         
     elif cmd == "임무목록":
-        Quest.show_quests(player)
+        show_quests(player)
         
     elif cmd == "저장":
         save_game(player, input_log)
