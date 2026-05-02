@@ -24,26 +24,12 @@ while True:
     input_log.append(cmd)
     
     if cmd == "상태":
-        neighbors = get_neighbors(player, campus_map)
-        neighbors = get_neighbors(player, campus_map)
-        print(f"계좌의 잔액: {player.money}원")
-        print(f"HP: {player.HP}")
-        print(f"현재위치: {player.location}")
-        print(f"동: {neighbors['동']}, 서: {neighbors['서']}, 남: {neighbors['남']}, 북: {neighbors['북']}")
+        player.print_status()
     
     
     elif cmd in ["동", "서", "남", "북"]:
-        result = player_move(player, cmd, campus_map)
+        result = player.move(cmd)
         if result == "moved":
-            if player.difficulty == "보통":
-                player.HP -= 1
-            if player.difficulty == "어려움":
-                player.HP -= 2
-            elif player.difficulty == "쉬움":
-                player.HP -= 0.5
-            if player.location in event_info:
-                print(f"[사건]: {event_info[player.location]}") 
-                
             on_arrive(player, event_answers)
             
     elif cmd == "가방":
@@ -57,7 +43,9 @@ while True:
             use_item(player, choice)
     
     elif cmd == "상호작용":
-        interact(player, event_answers)
+        result = interact(player, event_answers)
+        if result == "end":
+            break
         
     elif cmd == "구매":
         place = get_place(player.location)
