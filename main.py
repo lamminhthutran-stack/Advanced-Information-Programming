@@ -3,7 +3,6 @@ from map import campus_map, get_current_location, player_move, get_neighbors
 from data_loader import load_events
 from quest import Quest
 from place import Place
-from utils import use_item
 from utils import use_item, save_game, load_game
 
 player = Player()
@@ -54,13 +53,18 @@ while True:
             print("이 장소에서는 구매할 수 없습니다.")
             
     elif cmd == "판매":
-        place = get_place(player.location)
+        place = Place.get_place(player.location)
         if place.sell_items:
-            interact_sell(place, player)
+            Place.interact_sell(place, player)
         else:
             print("이 장소에서는 판매할 수 없습니다.")
         
     elif cmd == "임무":
+        result - Quest.interact(player, event_answers)
+        if result == "end":
+            break
+    
+    elif cmd == "임무목록":
         Quest.show_quests(player)
         
     elif cmd == "저장":

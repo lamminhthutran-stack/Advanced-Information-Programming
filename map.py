@@ -38,6 +38,8 @@ def player_move(player, direction, campus_map):
     player.col = new_col
     player.location = campus_map[new_row][new_col]
     print(f"{player.location}으로 이동했어.")
+    hp_loss = {"보통": 1, "어려움": 2}
+    player.HP -= hp_loss.get(player.difficulty, 1)
     return "moved"
 
 def get_place_name(row, col, campus_map):
