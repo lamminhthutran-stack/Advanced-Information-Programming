@@ -66,20 +66,18 @@ class Quest:
                 player,
                 "학교 소식 확인",
                 "학교에서 어떤 일들이 일어나고있는지 소식들이 모이는 독수리상에서 알아보자.")
-        else:
-            print("이미 정문에서 받은 임무가 있습니다.")
 
     def interact_eagle(player):
         if "학교 소식 확인" in player.quests:
             Quest.complete_quest(player, "학교 소식 확인")
 
-        if "교내 부조리 수사" not in player.quests:
+        if "교내 부조리 수사" not in player.quests and "교내 부조리 수사" not in player.completed_quests:
             Quest.add_quest(
                 player,
                 "교내 부조리 수사",
                 "교내 어딘가에서 부조리가 일어나고있다. 이동하고 상호작용을 해서 부조리를 찾아서 본관에 보고하라.")
 
-        if "교내 위생사건 수사" not in player.quests:
+        if "교내 위생사건 수사" not in player.quests and "교내 위생사건 수사" not in player.completed_quests:
             Quest.add_quest(
                 player,
                 "교내 위생사건 수사",

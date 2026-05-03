@@ -7,7 +7,9 @@ class Place:
         self.sell_items = sell_items or {}
 
 
-
+    def get_place(location):
+        return Place.place_db.get(location, Place(location))
+    
     def interact_buy(place, player):
         if not place.buy_items:
             print("구매할 수 있는 물건이 없습니다.")
@@ -76,36 +78,33 @@ class Place:
                 print("올바른 번호를 입력하세요.")
 
 
-    BUY_ITEMS_SCHOOL = {"두쫀쿠": (5000, 10), "카페라떼": (3000, 5)}
-    BUY_ITEMS_CAFE   = {"두쫀쿠": (4000, 10), "카페라떼": (2000, 5)}
-    SELL_ITEMS_HIGH  = {"두쫀쿠": (7000, 10), "카페라떼": (4000, 5)}
-    SELL_ITEMS_MID   = {"두쫀쿠": (6000, 10), "카페라떼": (3000, 5)}
+BUY_ITEMS_SCHOOL = {"두쫀쿠": (5000, 10), "카페라떼": (3000, 5)}
+BUY_ITEMS_CAFE   = {"두쫀쿠": (4000, 10), "카페라떼": (2000, 5)}
+SELL_ITEMS_HIGH  = {"두쫀쿠": (7000, 10), "카페라떼": (4000, 5)}
+SELL_ITEMS_MID   = {"두쫀쿠": (6000, 10), "카페라떼": (3000, 5)}
 
-    place_db = {
-        "학생회관":   Place("학생회관",  buy_items=BUY_ITEMS_SCHOOL),
-        "스타벅스":   Place("스타벅스",  buy_items=BUY_ITEMS_CAFE),
-        "ABMRC":      Place("ABMRC",     buy_items=BUY_ITEMS_CAFE),
-        "체육관":     Place("체육관",    sell_items=SELL_ITEMS_HIGH),
-        "공학관":     Place("공학관",    sell_items=SELL_ITEMS_HIGH),
-        "공학원":     Place("공학원",    sell_items=SELL_ITEMS_HIGH),
-        "재활병원":   Place("재활병원",  sell_items=SELL_ITEMS_HIGH),
-        "어린이병원": Place("어린이병원",sell_items=SELL_ITEMS_HIGH),
-        "노천극장":   Place("노천극장",  sell_items=SELL_ITEMS_HIGH),
-        "중앙도서관": Place("중앙도서관",sell_items=SELL_ITEMS_MID),
-        "백양관":     Place("백양관",    sell_items=SELL_ITEMS_MID),
-        "대강당":     Place("대강당",    sell_items=SELL_ITEMS_MID),
-        "백주년기념관":Place("백주년기념관",sell_items=SELL_ITEMS_MID),
-        "안과병원":   Place("안과병원",  sell_items=SELL_ITEMS_MID),
-        "암병원":     Place("암병원",    sell_items=SELL_ITEMS_MID),
-        "새천년관":   Place("새천년관",  sell_items=SELL_ITEMS_MID),
-        "알렌관":     Place("알렌관",    sell_items=SELL_ITEMS_MID),
-        "제중관":     Place("제중관",    sell_items=SELL_ITEMS_MID),
-        "의과대학":   Place("의과대학",  sell_items=SELL_ITEMS_MID),
-        "치과대학":   Place("치과대학",  sell_items=SELL_ITEMS_MID),
-        "세브란스병원":Place("세브란스병원",sell_items=SELL_ITEMS_MID),
-        "본관":       Place("본관",      sell_items=SELL_ITEMS_MID),
-        "경영관":     Place("경영관",    sell_items=SELL_ITEMS_MID),
-    }
-
-    def get_place(location):
-        return place_db.get(location, Place(location))
+Place.place_db = {
+    "학생회관":    Place("학생회관",   buy_items=BUY_ITEMS_SCHOOL),
+    "스타벅스":    Place("스타벅스",   buy_items=BUY_ITEMS_CAFE),
+    "ABMRC":       Place("ABMRC",      buy_items=BUY_ITEMS_CAFE),
+    "체육관":      Place("체육관",     sell_items=SELL_ITEMS_HIGH),
+    "공학관":      Place("공학관",     sell_items=SELL_ITEMS_HIGH),
+    "공학원":      Place("공학원",     sell_items=SELL_ITEMS_HIGH),
+    "재활병원":    Place("재활병원",   sell_items=SELL_ITEMS_HIGH),
+    "어린이병원":  Place("어린이병원", sell_items=SELL_ITEMS_HIGH),
+    "노천극장":    Place("노천극장",   sell_items=SELL_ITEMS_HIGH),
+    "중앙도서관":  Place("중앙도서관", sell_items=SELL_ITEMS_MID),
+    "백양관":      Place("백양관",     sell_items=SELL_ITEMS_MID),
+    "대강당":      Place("대강당",     sell_items=SELL_ITEMS_MID),
+    "백주년기념관":Place("백주년기념관",sell_items=SELL_ITEMS_MID),
+    "안과병원":    Place("안과병원",   sell_items=SELL_ITEMS_MID),
+    "암병원":      Place("암병원",     sell_items=SELL_ITEMS_MID),
+    "새천년관":    Place("새천년관",   sell_items=SELL_ITEMS_MID),
+    "알렌관":      Place("알렌관",     sell_items=SELL_ITEMS_MID),
+    "제중관":      Place("제중관",     sell_items=SELL_ITEMS_MID),
+    "의과대학":    Place("의과대학",   sell_items=SELL_ITEMS_MID),
+    "치과대학":    Place("치과대학",   sell_items=SELL_ITEMS_MID),
+    "세브란스병원":Place("세브란스병원",sell_items=SELL_ITEMS_MID),
+    "본관":        Place("본관",       sell_items=SELL_ITEMS_MID),
+    "경영관":      Place("경영관",     sell_items=SELL_ITEMS_MID),
+}
