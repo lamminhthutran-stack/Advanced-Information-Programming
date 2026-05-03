@@ -1,4 +1,4 @@
-
+import sys 
 campus_map = [
     ["종합관", "본관", "경영관", "노천극장", "새천년관", "이윤재관"],
     ["백양관", "백양로5", "대강당", "음악관", "알렌관", "ABMRC"],
@@ -40,6 +40,9 @@ def player_move(player, direction, campus_map):
     print(f"{player.location}으로 이동했어.")
     hp_loss = {"보통": 1, "어려움": 2}
     player.HP -= hp_loss.get(player.difficulty, 1)
+    if player.HP <= 0:
+        print("HP가 0이 되었습니다. 게임 오버!")
+        sys.exit()
     return "moved"
 
 def get_place_name(row, col, campus_map):
