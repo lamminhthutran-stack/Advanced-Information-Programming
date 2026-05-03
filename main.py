@@ -60,7 +60,7 @@ while True:
             print("이 장소에서는 판매할 수 없습니다.")
         
     elif cmd == "임무":
-        result - Quest.interact(player, event_answers)
+        result = Quest.interact(player, event_answers)
         if result == "end":
             break
     

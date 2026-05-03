@@ -31,10 +31,8 @@ class Quest:
     def on_arrive(player, event_answers):
         location = player.location
         actions = []
-        from place import get_place
-        place = get_place(location)
-        if location == "정문":
-            Quest.interact_gate(player)
+        from place import Place
+        place = Place.get_place(location)
         if place.buy_items:
             actions.append("구매")
         if place.sell_items:
@@ -44,6 +42,8 @@ class Quest:
             actions.append("임무")
         if actions:
             print(f"[{', '.join(actions)}]")
+        if location == "정문":
+            Quest.interact_gate(player)
 
     def interact(player, event_answers):
         location = player.location
@@ -56,7 +56,6 @@ class Quest:
         elif location == "세브란스병원":
             Quest.interact_severance(player, event_answers)
         elif location == "이윤재관":
-            Quest.interact_classroom(player)
             return Quest.interact_classroom(player)
         else:
             print("이 장소에서는 상호작용할 수 없습니다.")
