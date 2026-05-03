@@ -14,8 +14,7 @@ event_answers = events_data["answers"]
 input_log = []
 
 print("송도 생활을 마치고 신촌에 처음 도착했다. 연대앞 버스정류장이다.")
-print("현재 시간은 11시.")
-print("1시 수업은 이윤재관 511호다.")
+print("임무완료를 보고할 장소는 이윤재관 511호다.")
 print("배가 고프다")
 
 
@@ -61,7 +60,7 @@ while True:
         else:
             print("이 장소에서는 판매할 수 없습니다.")
         
-    elif cmd == "임무목록":
+    elif cmd == "임무":
         show_quests(player)
         
     elif cmd == "저장":
@@ -72,8 +71,8 @@ while True:
     
     elif cmd == "난이도":
         print(f" 현재 난이도: {player.difficulty}")
-        choice = input("난이도를 선택하세요 (쉬움, 보통, 어려움): ").strip()
-        if choice in ["쉬움", "보통", "어려움"]:
+        choice = input("난이도를 선택하세요 (보통, 어려움): ").strip()
+        if choice in ["보통", "어려움"]:
             player.difficulty = choice
             print(f"난이도가 {choice}로 변경되었습니다.")
         else:
