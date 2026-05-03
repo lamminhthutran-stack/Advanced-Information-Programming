@@ -28,7 +28,7 @@ while True:
     elif cmd in ["동", "서", "남", "북"]:
         result = player.move(cmd)
         if result == "moved":
-            Quest.on_arrive(player, event_answers)
+            Quest.on_arrive(player, event_info, event_answers)
             
     elif cmd == "가방":
         if not player.inventory:

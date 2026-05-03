@@ -26,7 +26,7 @@ class Quest:
             return
         print("임무목록:")
         for quest in player.quests.values():
-            print(f"  - {quest.name}: {quest.description}")
+            print(f"  - {quest.name} - {quest.description}")
 
     def on_arrive(player, event_answers):
         location = player.location
@@ -42,6 +42,8 @@ class Quest:
             actions.append("임무")
         if actions:
             print(f"[{', '.join(actions)}]")
+        if location in event_info:
+            print(event_info[location])
         if location == "정문":
             Quest.interact_gate(player)
 
