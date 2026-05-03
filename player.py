@@ -5,6 +5,7 @@ class Player:
         self.location = "연대앞 버스정류장"
         self.inventory = []
         self.quests = {}
+        self.completed_quests = []
         self.row = 6   
         self.col = 0
         self.difficulty = "보통"

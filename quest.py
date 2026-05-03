@@ -13,6 +13,7 @@ class Quest:
     def complete_quest(player, name):
         if name in player.quests:
             print(f"다음의 임무가 해결되었다! [{name}]")
+            player.completed_quests.append(name)
             del player.quests[name]
 
     def remove_quest(player, name):
@@ -105,9 +106,13 @@ class Quest:
             print("정답이 아닙니다. 다시 시도하세요.")
 
     def interact_classroom(player):
-        corruption_done = "교내 부조리 수사" not in player.quests
-        food_done = "교내 위생사건 수사" not in player.quests
+        corruption_done = "교내 부조리 수사" in player.completed_quests
+        food_done = "교내 위생사건 수사" in player.completed_quests
 
+        if not corruption_done and not food_done:
+            print("독수리상에서 임무를 받고 오세요.")
+            return
+        
         if corruption_done and food_done:
             print("부조리와 식중독 수사를 완료했구나! 수업은 이걸로 끝입니다. 또 만나요~")
             return "end"
@@ -115,5 +120,3 @@ class Quest:
             print("부조리 수사를 완료했구나! 식중독 원인도 찾아주세요~")
         elif food_done:
             print("식중독 수사를 완료했구나! 부조리도 찾아주세요~")
-        else:
-            print("독수리상에서 임무를 받고 오세요.")

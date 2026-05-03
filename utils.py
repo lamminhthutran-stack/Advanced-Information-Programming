@@ -51,7 +51,7 @@ def save_game(player, input_log):
         "quests":     player.quests,
         "difficulty": player.difficulty,
         "input_log":  input_log,
-        "saved_at":   timestamp,
+        "completed_quests": player.completed_quests
     }
 
     with open(filename, "wb") as f:
@@ -99,6 +99,7 @@ def load_game(player):
     player.quests     = data["quests"]
     player.difficulty = data["difficulty"]
     input_log         = data["input_log"]
+    player.completed_quests = data.get("completed_quests", [])
 
     print(f"'{filepath}'에서 불러왔습니다.")
     print(f"  위치: {player.location} | HP: {player.HP} | 잔액: {player.money}원")

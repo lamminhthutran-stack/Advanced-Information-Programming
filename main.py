@@ -1,8 +1,8 @@
 from player import Player
 from map import campus_map, get_current_location, player_move, get_neighbors
 from data_loader import load_events
-from quest import Quest, interact, show_quests, on_arrive
-from place import get_place, interact_buy, interact_sell
+from quest import Quest
+from place import Place
 from utils import use_item
 from utils import use_item, save_game, load_game
 
@@ -29,7 +29,7 @@ while True:
     elif cmd in ["동", "서", "남", "북"]:
         result = player.move(cmd)
         if result == "moved":
-            on_arrive(player, event_answers)
+            Quest.on_arrive(player, event_answers)
             
     elif cmd == "가방":
         if not player.inventory:
@@ -42,14 +42,14 @@ while True:
             use_item(player, choice)
     
     elif cmd == "상호작용":
-        result = interact(player, event_answers)
+        result = Quest.interact(player, event_answers)
         if result == "end":
             break
         
     elif cmd == "구매":
-        place = get_place(player.location)
+        place = Place.get_place(player.location)
         if place.buy_items:
-            interact_buy(place, player)
+            Place.interact_buy(place, player)
         else:
             print("이 장소에서는 구매할 수 없습니다.")
             
@@ -61,7 +61,7 @@ while True:
             print("이 장소에서는 판매할 수 없습니다.")
         
     elif cmd == "임무":
-        show_quests(player)
+        Quest.show_quests(player)
         
     elif cmd == "저장":
         save_game(player, input_log)
