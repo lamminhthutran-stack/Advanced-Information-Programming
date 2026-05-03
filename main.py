@@ -37,7 +37,7 @@ while True:
             print("가방 목록:")
             for i, item in enumerate(player.inventory, 1):
                 print(f"{i}. {item}")
-            choice = input("사용 할 물선 이름 또는 번호 (취소: 엔터): ").strip()
+            choice = input("사용 할 물건 이름 또는 번호 (취소: 엔터): ").strip()
             use_item(player, choice)
     
     elif cmd == "상호작용":
